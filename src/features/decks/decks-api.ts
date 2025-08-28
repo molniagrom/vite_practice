@@ -1,29 +1,37 @@
 import axios from 'axios'
 
-type DecksType = {
-  "items": [
-    {
-      "isFavorite": true,
-      "author": {
-        "id": "string",
-        "name": "string"
-      },
-      "id": "string",
-      "userId": "string",
-      "name": "string",
-      "isPrivate": true,
-      "cover": "string",
-      "created": "2025-08-28T12:03:05.200Z",
-      "updated": "2025-08-28T12:03:05.200Z",
-      "cardsCount": 0
-    }
-  ],
-  "pagination": {
-    "currentPage": 0,
-    "itemsPerPage": 0,
-    "totalPages": 0,
-    "totalItems": 0
-  }
+// Тип для автора колоды
+export type AuthorType = {
+  id: string
+  name: string
+}
+
+// Тип для одной колоды
+export type DeckType = {
+  isFavorite: boolean
+  author: AuthorType
+  id: string
+  userId: string
+  name: string
+  isPrivate: boolean
+  cover: string
+  created: string // Можно поменять на Date, если будешь использовать объекты даты
+  updated: string
+  cardsCount: number
+}
+
+// Тип для пагинации
+export type PaginationType = {
+  currentPage: number
+  itemsPerPage: number
+  totalPages: number
+  totalItems: number
+}
+
+// Основной тип для ответа с колодами
+export type DecksType = {
+  items: DeckType[]
+  pagination: PaginationType
 }
 
 export const instance = axios.create({
@@ -35,6 +43,6 @@ export const instance = axios.create({
 
 export const decksApi = {
   getDecks() {
-    return instance.get<DecksType>("/v2/decks")
+    return instance.get<DecksType>('/v2/decks')
   },
 }
