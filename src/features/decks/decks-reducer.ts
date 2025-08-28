@@ -20,18 +20,7 @@ export const decksReducer = (state: DecksState = initialState, action: DecksActi
       return {
         ...state,
         decks: [
-          {
-            isFavorite: false,
-            author: { id: '', name: '' },
-            id: '',
-            userId: '',
-            name: action.payload.name,
-            isPrivate: false,
-            cover: '',
-            created: '',
-            updated: '',
-            cardsCount: 0,
-          },
+         action.payload.deck,
           ...state.decks,
         ],
       }
@@ -48,8 +37,8 @@ export const setDeckAC = (decks: DeckType[]) =>
     payload: { decks },
   }) as const
 
-export const createDeckAC = (name: DeckType['name']) =>
+export const createDeckAC = (deck: DeckType) =>
   ({
     type: 'CREATE_DECKS',
-    payload: { name },
+    payload: { deck },
   }) as const

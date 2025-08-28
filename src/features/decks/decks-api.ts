@@ -45,7 +45,11 @@ export const decksApi = {
   getDecks() {
     return instance.get<DecksType>('/v2/decks')
   },
-  createDeck(name: DeckType['name']) {
-    return instance.post<DeckType>(`/v1/decks`, {name})
+  createDeck(params: CreateDeckParams) {
+    return instance.post<DeckType>(`/v1/decks`, params)
   },
+}
+
+export type CreateDeckParams = {
+  name: DeckType['name']
 }
