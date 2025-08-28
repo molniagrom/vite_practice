@@ -1,4 +1,4 @@
-import { CreateDeckParams, decksApi, DeckType } from './decks-api.ts'
+import { CreateDeckParams, decksApi } from './decks-api.ts'
 import { createDeckAC, setDeckAC } from './decks-reducer.ts'
 import { Dispatch } from 'redux'
 

@@ -11,6 +11,7 @@ export const AddNewDeckForm = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<FormValues>({
     defaultValues: {
@@ -21,7 +22,9 @@ export const AddNewDeckForm = () => {
   const dispatch = useAppDispatch()
 
   const onSubmit = (data: FormValues) => {
-    dispatch(createDecksThunk({ name: data.name }))
+    dispatch(createDecksThunk({ name: data.name })).then(() => {
+      reset()
+    })
   }
 
   return (
